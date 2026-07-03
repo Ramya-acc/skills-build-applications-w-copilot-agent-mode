@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
-import { fetchJson, API_HOST } from '../api'
+import { fetchJson } from '../api'
 
 export default function Users() {
   const [users, setUsers] = useState([])
   const [error, setError] = useState(null)
-  const endpoint = `${API_HOST}/api/users/`
+  const codespace = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  const endpoint = codespace
+    ? `https://${codespace}-8000.app.github.dev/api/users/`
+    : 'http://localhost:8000/api/users/'
 
   useEffect(() => {
     fetchJson('users/')

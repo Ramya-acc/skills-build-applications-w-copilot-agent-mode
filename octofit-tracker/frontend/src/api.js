@@ -26,4 +26,4 @@ async function fetchJson(path) {
   return data
 }
 
-export { apiBase, fetchJson, API_HOST, CODESPACE_NAME }
+export { apiBase, fetchJson, CODESPACE_NAME }

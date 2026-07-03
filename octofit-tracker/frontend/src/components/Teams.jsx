@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
-import { fetchJson, API_HOST } from '../api'
+import { fetchJson } from '../api'
 
 export default function Teams() {
   const [teams, setTeams] = useState([])
   const [error, setError] = useState(null)
-  const endpoint = `${API_HOST}/api/teams/`
+  const codespace = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  const endpoint = codespace
+    ? `https://${codespace}-8000.app.github.dev/api/teams/`
+    : 'http://localhost:8000/api/teams/'
 
   useEffect(() => {
     fetchJson('teams/')

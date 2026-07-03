@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
-import { fetchJson, API_HOST } from '../api'
+import { fetchJson } from '../api'
 
 export default function Activities() {
   const [items, setItems] = useState([])
   const [error, setError] = useState(null)
-  const endpoint = `${API_HOST}/api/activities/`
+  const codespace = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  const endpoint = codespace
+    ? `https://${codespace}-8000.app.github.dev/api/activities/`
+    : 'http://localhost:8000/api/activities/'
 
   useEffect(() => {
     fetchJson('activities/')
