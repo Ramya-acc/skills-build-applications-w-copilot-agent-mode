@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { fetchJson, apiBase } from '../api'
+import { fetchJson, API_HOST } from '../api'
 
 export default function Teams() {
   const [teams, setTeams] = useState([])
   const [error, setError] = useState(null)
+  const endpoint = `${API_HOST}/api/teams/`
 
   useEffect(() => {
     fetchJson('teams/')
@@ -14,7 +15,7 @@ export default function Teams() {
   return (
     <section className="card p-4 mb-4">
       <h2 className="h4">Teams</h2>
-      <p className="text-muted">API: {apiBase('teams/')}</p>
+      <p className="text-muted">API: {endpoint}</p>
       {error && <div className="alert alert-danger">{error}</div>}
       {teams.length === 0 ? (
         <p>No teams found.</p>

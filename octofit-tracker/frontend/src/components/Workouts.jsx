@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { fetchJson, apiBase } from '../api'
+import { fetchJson, API_HOST } from '../api'
 
 export default function Workouts() {
   const [list, setList] = useState([])
   const [error, setError] = useState(null)
+  const endpoint = `${API_HOST}/api/workouts/`
 
   useEffect(() => {
     fetchJson('workouts/')
@@ -14,7 +15,7 @@ export default function Workouts() {
   return (
     <section className="card p-4 mb-4">
       <h2 className="h4">Workouts</h2>
-      <p className="text-muted">API: {apiBase('workouts/')}</p>
+      <p className="text-muted">API: {endpoint}</p>
       {error && <div className="alert alert-danger">{error}</div>}
       {list.length === 0 ? (
         <p>No workouts found.</p>
